@@ -21,6 +21,7 @@ def get-gsp-clusters():
 	# iterate through files 
 	# if they end .yaml, add them to a list
 
+# https://developer.github.com/v3/repos/contents/#get-contents
 # GitHub API response for directory:
 
 # [
@@ -87,4 +88,3 @@ def get-gsp-clusters():
 
 	
 	# for now, just print out the names of the clusters
-	
