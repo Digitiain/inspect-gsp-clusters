@@ -1,25 +1,45 @@
 #!/usr/bin/env python3
 import base64
 import requests
+import yaml
+from github import Github
 
-baseurl = 'https://api.github.com/repos/alphagov/gsp-teams/tree/master/clusters'
+# Github setup
+token = [bash variable]
+g = Github(token)
 
+repo = g.get_repo("https://api.github.com/repos/alphagov/gsp-teams/tree/master/clusters")
 
-def get-gsp-clusters():
+def yaml_filenames():
+	# Get name of yaml files in repo
 
-	# get all of the contents of all of the files in the repo
+	yaml-files = []
 
-	req = requests.get(baseurl)
-	if req.status_code == requests.codes.ok:
-	    req = req.json()  # the response is a JSON
-	    # req is now a dict with keys: name, encoding, url, size ...
-	    # and content. But it is encoded with base64.
-	    content = base64.decodestring(req['content'])
-	else:
-	    print('Content was not found.')
+	# Get all contents/files from repo
+	contents = repo.get_contents("")
 
-	# iterate through files 
-	# if they end .yaml, add them to a list
+	# Get name of each file ending .yaml
+	for content_file in contents:
+		if ".yaml" or ".yml" in content_file:
+			yaml-files.append(content_file)
+
+	return yaml-files
+
+def cluster_name(yaml-files):
+	# Return all cluster names
+
+	clusters = ()
+
+	for file in yaml-files:
+		file-content = yaml.load(file.content) # Might be base64 encoded
+		cluster-name = file-content["cluster-name"]
+		clusters.append(cluster-name)
+
+	return clusters
+
+def current_clusters(clusters):
+	for i in clusters:
+		print ("Cluster name: " & i) # Might need to be made string
 
 # https://developer.github.com/v3/repos/contents/#get-contents
 # GitHub API response for directory:
@@ -59,12 +79,6 @@ def get-gsp-clusters():
 #   }
 # ]
 
-
-	# iterate through list of yaml file names
-	# append name to GitHub API GET request
-	# go through content and find cluster-name
-	# add cluster-name to list
-
 # GitHub API response for file:
 
 # {
@@ -85,6 +99,3 @@ def get-gsp-clusters():
 #     "html": "https://github.com/octokit/octokit.rb/blob/master/README.md"
 #   }
 # }
-
-	
-	# for now, just print out the names of the clusters
