@@ -1,4 +1,4 @@
-# inspect-gsp
+# inspect-gsp-clusters
 
 A Flask app that displays information about [GSP](https://github.com/alphagov/gsp-teams) clusters running at [GDS](https://github.com/alphagov).
 
