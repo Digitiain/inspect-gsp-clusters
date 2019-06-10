@@ -1,13 +1,13 @@
-# get-gsp-clusters
+# inspect-gsp
 
-A python3 script to get the names (and, later, maybe other details) about [GSP](https://github.com/alphagov/gsp-teams) clusters running at [GDS](https://github.com/alphagov).
+A Flask app that displays information about [GSP](https://github.com/alphagov/gsp-teams) clusters running at [GDS](https://github.com/alphagov).
 
 ## Getting started
 
 ### Pre-requisites
 
 - python3
-- pip3
+- pip3 (should come with Python 3)
 
 ### Installation
 
@@ -17,6 +17,12 @@ A python3 script to get the names (and, later, maybe other details) about [GSP](
 
   `python3 -m venv <virtual environment name>`
 
-3. Install requirements:
+3. Activate the environment
 
-  `pip3 install requirements.txt`
+  `source <virtual env name>/bin/activate`
+
+4. Install requirements:
+
+  `pip install -r requirements.txt`
+  
+  This installs Flask, PyGithub, PyYaml and their dependencies.
