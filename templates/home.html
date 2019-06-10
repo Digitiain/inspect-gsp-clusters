@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<ul>
+{% for cluster in clusters %}
+    <li><a href="/{{ cluster["cluster-name"] }}">{{ cluster["cluster-name"] }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

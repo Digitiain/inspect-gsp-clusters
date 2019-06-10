@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% macro sentence_case(text) %}
+    {{ text[0]|upper}}{{text[1:] }}
+{% endmacro %}
+
+{% block title %}{{ cluster["cluster-name"] }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ sentence_case(cluster["cluster-name"]) }} cluster details</h1>
+<ul>
+{% for k, v in cluster.items() %}}
+    <li>{{ k }}: {{ v }}</li>
+{% endfor %}}
+</ul>
+
+{% endblock %}
