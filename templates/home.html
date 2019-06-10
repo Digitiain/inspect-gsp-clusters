@@ -1,13 +1,31 @@
 {% extends 'base.html' %}
 
+{% macro sentence_case(text) %}
+    {{ text[0]|upper}}{{text[1:] }}
+{% endmacro %}
+
 {% block title %}Home{% endblock %}
 
 {% block content %}
-
-<ul>
+<div class="container">
+<!--<ul>-->
 {% for cluster in clusters %}
-    <li><a href="/{{ cluster["cluster-name"] }}">{{ cluster["cluster-name"] }}</a></li>
-{% endfor %}
-</ul>
+<!--    <li><a href="/{{ cluster["cluster-name"] }}">{{ cluster["cluster-name"] }}</a></li>-->
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <h1>{{ sentence_case(cluster["cluster-name"]) }} cluster</h1>
+                <p>Account ID: {{ cluster["account-id"] }}</p>
+                <p>EKS version: {{ cluster["eks-version"] }}</p>
+                <p><a href="{{ cluster['concourse-url'] }}">Link to Concourse</a></p>
+                <p>Cluster domain: <a href="https://{{ cluster['cluster-domain'] }}">{{ cluster["cluster-domain"] }}</a></p>
+                <p>{{ cluster["worker-count"] }} x {{ cluster["worker-instance-type"] }} worker nodes</p>
+                <p>{{ cluster["ci-worker-count"] }} x {{ cluster["ci-worker-instance-type"] }} CI nodes</p>
 
+            </div>
+        </div>
+    </div>
+{% endfor %}
+<!--</ul>-->
+</div>
 {% endblock %}

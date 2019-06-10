@@ -24,22 +24,23 @@ def home():
 	for file in contents:
 		decoded = base64.b64decode(file.content)
 		yamled = yaml.safe_load(decoded)
-		print(yamled["cluster-name"])
 		clusters.append(yamled)
 
 	return render_template('home.html', clusters=clusters)
 
 
-@app.route('/<clustername>')
-def show_cluster_info(clustername):
+# This is if a separate details page is required
 
-	# Github setup
-	token = os.environ['GITHUB_TOKEN']
-	g = Github(token)
-
-	repo = g.get_repo("alphagov/gsp-teams")
-	file = repo.get_contents("clusters/" + clustername + ".yaml")
-	decoded = base64.b64decode(file.content)
-	cluster = yaml.safe_load(decoded)
-
-	return render_template('detail.html', cluster=cluster)
+# @app.route('/<clustername>')
+# def show_cluster_info(clustername):
+#
+# 	# Github setup
+# 	token = os.environ['GITHUB_TOKEN']
+# 	g = Github(token)
+#
+# 	repo = g.get_repo("alphagov/gsp-teams")
+# 	file = repo.get_contents("clusters/" + clustername + ".yaml")
+# 	decoded = base64.b64decode(file.content)
+# 	cluster = yaml.safe_load(decoded)
+#
+# 	return render_template('detail.html', cluster=cluster)
