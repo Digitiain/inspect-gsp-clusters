@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# export FLASK_ENV=development
+# export FLASK_APP=main.py
+#	 flask run
+
 from flask import Flask, render_template
 app = Flask(__name__)
 
