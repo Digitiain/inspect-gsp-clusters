@@ -6,8 +6,8 @@ A Flask app that displays information about [GSP](https://github.com/alphagov/gs
 
 ### Pre-requisites
 
-- python3
-- pip3 (should come with Python 3)
+- Python 3 (latest)
+- Obtain a GitHub token with "read" permissions for repos
 
 ### Installation
 
@@ -26,3 +26,21 @@ A Flask app that displays information about [GSP](https://github.com/alphagov/gs
   `pip install -r requirements.txt`
   
   This installs Flask, PyGithub, PyYaml and their dependencies.
+  
+### Running the application
+
+1. Activate you're virtual environment (if applicable):
+
+  `source <virtual env name>/bin/activate`
+
+2. Export environment variables:
+
+```
+ export GITHUB_TOKEN="<your github token>"
+export FLASK_APP=main.py
+export FLASK_ENVIRONMENT=development # don't do this in production!
+```
+
+3. Run the application
+
+`flask run`\s
